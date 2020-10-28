@@ -1,24 +1,13 @@
 # cloud
 
 ## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+      |
+      |
+src - |           | - Login.vue    (登录)
+      |           | - Home.vue     (首页)
+      |           | - Admin.vue    (管理员管理)
+      | - views - | - User.vue     (注册用户管理)
+      |           | - Goods.vue    (商品列表管理)
+      |           | - Detail.vue   (商品详情管理)
+      |           | - Order.vue    (用户订单管理)
+      |           | - Address.vue  (用户地址管理)

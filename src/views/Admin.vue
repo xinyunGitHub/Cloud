@@ -1,15 +1,15 @@
 <template>
-  <div class="home">home</div>
+  <div class="admin">admin</div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Admin"
 }
 </script>
 
 <style lang="less" scoped>
-.home {
+.admin {
   position: relative;
   width: 100%;
   min-height: 100vh;
