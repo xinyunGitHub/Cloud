@@ -10,7 +10,7 @@
             </el-col>
             <el-col :span="3" :offset="16">
               <div class="cloud-avatar" @click="signOut">
-                <el-avatar :size="34" :src="circleUrl"></el-avatar>
+                <el-avatar :size="34" :src="avatarUrl"></el-avatar>
                 <span>登出</span>
               </div>
             </el-col>
@@ -59,7 +59,7 @@ export default {
   name: "Header",
   data() {
     return {
-      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      avatarUrl: require("@/assets/image/avatar.png"),
     }
   },
   methods: {
@@ -115,7 +115,6 @@ export default {
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
   }
   body > .el-container {
     margin-bottom: 40px;
