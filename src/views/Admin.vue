@@ -7,7 +7,8 @@
           style="width: 100%;">
           <el-table-column
             prop="id"
-            label="id">
+            label="id"
+            width="68px">
           </el-table-column>
           <el-table-column
             prop="name"

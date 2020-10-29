@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <template v-if="$store.getters.getLoginStatus">
+    <template v-if="!$store.getters.getLoginStatus">
       <el-container>
         <!--【顶部】-->
         <el-header>
@@ -20,7 +20,7 @@
           <!--【左侧】-->
           <el-aside width="200px">
             <el-menu
-              default-active="/"
+              :default-active="$store.getters.getActivePath"
               :router="true"
               class="cloud-aside"
               background-color="#545c64"
@@ -38,7 +38,7 @@
             <!--【导航】-->
             <el-breadcrumb separator-class="el-icon-arrow-right">
               <el-breadcrumb-item>Cloud</el-breadcrumb-item>
-              <el-breadcrumb-item>{{ $store.getters.getAsideActive }}</el-breadcrumb-item>
+              <el-breadcrumb-item>{{ $store.getters.getActiveTitle }}</el-breadcrumb-item>
             </el-breadcrumb>
             <!--【内容】-->
             <slot></slot>

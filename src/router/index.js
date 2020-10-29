@@ -83,7 +83,8 @@ router.beforeEach((to, from, next) => {
     const aside = routes.filter(item => item.aside);
     const active = routes.filter(item => item.path == to.path);
     store.commit("setAsideRouter", aside);
-    store.commit("setAsideActive", active[0].title);
+    store.commit("setActiveTitle", active[0].title);
+    store.commit("setActivePath", active[0].path);
 
     if (login) { /* @@ 已登陆 */
       if (to.name == "Login") {
