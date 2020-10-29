@@ -101,20 +101,14 @@
               </el-form-item>
               <el-form-item label="商品详情大图:">
                 <el-upload
-                  class="avatar-uploader"
-                  v-if="dialogAdd"
-                  :multiple="false"
+                  class="upload-demo"
                   :action="baseUrl + 'apg/detail/upload'"
-                  :show-file-list="true"
-                  :on-success="figureAvatarSuccess"
-                  :on-remove="figureAvatarRemove"
-                  :before-upload="beforeAvatarUpload">
-                  <template v-if="addData.figure.length > 0">
-                    <template v-for="(list, index) in addData.figure">
-                      <img :key="index" :src="baseUrl + 'storage/' + list" class="avatar">
-                    </template>
-                  </template>
-                  <i class="el-icon-plus avatar-uploader-icon"></i>
+                  :on-success="addFigureSuccess"
+                  :on-remove="addFigureRemove"
+                  :file-list="figureFileList"
+                  list-type="picture">
+                  <el-button size="small" type="primary">点击上传</el-button>
+                  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>
               </el-form-item>
               <el-form-item label="商品名称:" prop="title">
@@ -125,20 +119,14 @@
               </el-form-item>
               <el-form-item label="商品详情描述:">
                 <el-upload
-                  class="avatar-uploader"
-                  v-if="dialogAdd"
-                  :multiple="false"
+                  class="upload-demo"
                   :action="baseUrl + 'apg/detail/upload'"
-                  :show-file-list="true"
-                  :on-success="describeAvatarSuccess"
-                  :on-remove="describeAvatarRemove"
-                  :before-upload="beforeAvatarUpload">
-                  <template v-if="addData.describe.length > 0">
-                    <template v-for="(list, index) in addData.describe">
-                      <img :key="index" :src="baseUrl + 'storage/' + list" class="avatar">
-                    </template>
-                  </template>
-                  <i class="el-icon-plus avatar-uploader-icon"></i>
+                  :on-success="addDescribeSuccess"
+                  :on-remove="addDescribeRemove"
+                  :file-list="describeFileList"
+                  list-type="picture">
+                  <el-button size="small" type="primary">点击上传</el-button>
+                  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>
               </el-form-item>
               <el-form-item>
@@ -159,36 +147,22 @@
         <el-row :gutter="24">
           <el-col :span="19" :offset="2">
             <el-form label-position="left" label-width="auto" ref="editData" :model="editData" :rules="editRules">
-              <el-form-item label="商品选择:">
-                <el-select v-model="editData.unique" placeholder="请选择">
-                  <el-option
-                    v-for="item in goodsList"
-                    :key="item.unique"
-                    :label="item.title"
-                    :value="item.unique">
-                    <span style="float: left">
-                      <img style="margin: 2px; width: 30px; height: 30px;" :src="baseUrl + 'storage/' + item.thumb" class="figure">
-                    </span>
-                    <span style="float: right; color: #8492a6; font-size: 13px">{{ item.title }}</span>
-                  </el-option>
-                </el-select>
+              <el-form-item label="商品名称:">
+                <el-card>
+                  <img :src="baseUrl + 'storage/' + editData.thumbGoods" style="display: inline-block; width: 68px; height: 68px">
+                  <span style="padding: 12px;line-height: 24px;">{{ editData.titleGoods }}</span>
+                </el-card>
               </el-form-item>
               <el-form-item label="商品详情大图:">
                 <el-upload
-                  class="avatar-uploader"
-                  v-if="dialogEdit"
-                  :multiple="false"
+                  class="upload-demo"
                   :action="baseUrl + 'apg/detail/upload'"
-                  :show-file-list="true"
-                  :on-success="figureAvatarSuccess"
-                  :on-remove="figureAvatarRemove"
-                  :before-upload="beforeAvatarUpload">
-                  <template v-if="editData.figure.length > 0">
-                    <template v-for="(list, index) in editData.figure">
-                      <img :key="index" :src="baseUrl + 'storage/' + list" class="avatar">
-                    </template>
-                  </template>
-                  <i class="el-icon-plus avatar-uploader-icon"></i>
+                  :on-success="editFigureSuccess"
+                  :on-remove="editFigureRemove"
+                  :file-list="figureFileEdit"
+                  list-type="picture">
+                  <el-button size="small" type="primary">点击上传</el-button>
+                  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>
               </el-form-item>
               <el-form-item label="商品名称:" prop="title">
@@ -199,20 +173,14 @@
               </el-form-item>
               <el-form-item label="商品详情描述:">
                 <el-upload
-                  class="avatar-uploader"
-                  v-if="dialogEdit"
-                  :multiple="false"
+                  class="upload-demo"
                   :action="baseUrl + 'apg/detail/upload'"
-                  :show-file-list="true"
-                  :on-success="describeAvatarSuccess"
-                  :on-remove="describeAvatarRemove"
-                  :before-upload="beforeAvatarUpload">
-                  <template v-if="editData.describe.length > 0">
-                    <template v-for="(list, index) in editData.describe">
-                      <img :key="index" :src="baseUrl + 'storage/' + list" class="avatar">
-                    </template>
-                  </template>
-                  <i class="el-icon-plus avatar-uploader-icon"></i>
+                  :on-success="editDescribeSuccess"
+                  :on-remove="editDescribeRemove"
+                  :file-list="describeFileEdit"
+                  list-type="picture">
+                  <el-button size="small" type="primary">点击上传</el-button>
+                  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>
               </el-form-item>
               <el-form-item>
@@ -241,6 +209,7 @@ export default {
       delData: {},
       dialogAdd: false,
       goodsList: [],
+      goodsData: [],
       addData: {
         unique: '',
         figure: [],
@@ -248,6 +217,8 @@ export default {
         price: '',
         describe: []
       },
+      figureFileList: [],
+      describeFileList: [],
       addRules: {
         title: [
           { required: true, message: '请输入商品名称', trigger: 'blur' },
@@ -266,6 +237,8 @@ export default {
         price: '',
         describe: []
       },
+      figureFileEdit: [],
+      describeFileEdit: [],
       editRules: {
         title: [
           { required: true, message: '请输入商品名称', trigger: 'blur' },
@@ -280,19 +253,13 @@ export default {
   },
   created() {
     this.manageDetail();
-    this.manageGoods();
+    this.keepGoods();
   },
   methods: {
     async manageDetail() {
       let result = await queryDetail();
       if (result.status) {
         this.detailData = result.data;
-      }
-    },
-    async manageGoods() {
-      let result = await queryGoods();
-      if (result.status) {
-        this.goodsList = result.data;
       }
     },
     handleDelete(index, row) {
@@ -313,7 +280,33 @@ export default {
       this.dialogDel = false;
     },
     handleAdd() {
-      this.dialogAdd = true;
+      this.manageGoods();
+    },
+    async keepGoods() {
+      let result = await queryGoods();
+      if (result.status) {
+        this.goodsData = result.data;
+      }
+    },
+    async manageGoods() {
+      let result = await queryGoods();
+      if (result.status) {
+        let detailArr = [];
+        let goodsArr = [];
+        this.detailData.filter(item => detailArr.push(item.unique));
+        result.data.filter(item => goodsArr.push(item.unique));
+        let inter = goodsArr.filter(function(item){ return detailArr.indexOf(item) > -1 });
+        this.goodsList = result.data.filter(item => !inter.includes(item.unique));
+        if (this.goodsList.length > 0) {
+          this.dialogAdd = true;
+        } else {
+            this.$message({
+              message: '请在商品列表管理新增商品～',
+              type: 'warning'
+            });
+            return false;
+        }
+      }
     },
     verifyAddForm(formName) {
       this.$refs[formName].validate((valid) => {
@@ -395,6 +388,8 @@ export default {
         this.addData.title = '';
         this.addData.price = '';
         this.addData.describe = [];
+        this.figureFileList = [];
+        this.describeFileList = [];
         this.dialogAdd = false;
         this.$message({
           message: result.message,
@@ -412,31 +407,59 @@ export default {
       this.editData.title = row.title;
       this.editData.price = row.price.toString();
       this.editData.describe = row.describe;
+      // 查询编辑商品的列表信息
+      let list = this.goodsData.filter(item => item.unique == this.editData.unique);
+      this.editData.thumbGoods = list[0].thumb;
+      this.editData.titleGoods = list[0].title;
+      // 初始化已上传大图和描述
+      const figure = [];
+      this.editData.figure.filter(item => figure.push({name: '', url: this.baseUrl + 'storage/' + item}));
+      const describe = [];
+      this.editData.describe.filter(item => describe.push({name: '', url: this.baseUrl + 'storage/' + item}));
+
+      this.figureFileEdit = figure;
+      this.describeFileEdit = describe;
       this.dialogEdit = true;
     },
-    figureAvatarSuccess(res, file) {
+    addFigureSuccess(res, file) {
       console.log(res, file);
       this.addData.figure.push(res.data);
     },
-    figureAvatarRemove(file, fileList) {
+    addFigureRemove(file, fileList) {
       console.log(file, fileList);
       const list = [];
       fileList.filter(item => list.push(item.response.data))
       this.addData.figure = list;
     },
-    describeAvatarSuccess(res, file) {
+    addDescribeSuccess(res, file) {
       console.log(res, file);
       this.addData.describe.push(res.data);
     },
-    describeAvatarRemove(file, fileList) {
+    addDescribeRemove(file, fileList) {
       console.log(file, fileList);
       const list = [];
       fileList.filter(item => list.push(item.response.data))
       this.addData.describe = list;
     },
-    handleAvatarEdit(res, file) {
+    editFigureSuccess(res, file) {
       console.log(res, file);
-      this.addData.figure.push(res.data);
+      this.editData.figure.push(res.data);
+    },
+    editFigureRemove(file, fileList) {
+      console.log(file, fileList);
+      const list = [];
+      fileList.filter(item => list.push(item.response.data))
+      this.editData.figure = list;
+    },
+    editDescribeSuccess(res, file) {
+      console.log(res, file);
+      this.editData.describe.push(res.data);
+    },
+    editDescribeRemove(file, fileList) {
+      console.log(file, fileList);
+      const list = [];
+      fileList.filter(item => list.push(item.response.data))
+      this.editData.describe = list;
     },
     beforeAvatarUpload(file) {
       const type = file.type === 'image/jpeg' || file.type === 'image/png';

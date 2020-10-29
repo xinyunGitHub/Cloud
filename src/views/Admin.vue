@@ -1,6 +1,11 @@
 <template>
   <div class="admin">
     <el-row :gutter="20">
+      <el-col :span="2">
+        <el-button type="primary" @click="handleAdd">新增</el-button>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
       <el-col :span="24">
         <el-table
           :data="adminData"
@@ -35,15 +40,23 @@
                 size="mini"
                 type="primary"
                 @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button
-                size="mini"
-                type="success"
-                @click="handleAdd(scope.$index, scope.row)">新增</el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-col>
     </el-row>
+    <!--删除管理员对话框-->
+    <el-dialog
+      title="删除管理员"
+      :visible.sync="dialogDel"
+      width="320px"
+      center>
+      <span>您确定要删除该商品详情配置信息吗？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogDel = false">取 消</el-button>
+        <el-button type="primary" @click="adminDelete">确 定</el-button>
+      </span>
+    </el-dialog>
     <!--新增管理员对话框-->
     <el-dialog
       title="新增管理员"
@@ -111,6 +124,8 @@ export default {
   data() {
     return {
       adminData: [],
+      dialogDel: false,
+      delData: {},
       dialogAdd: false,
       addData: {
         name: '',
@@ -170,10 +185,14 @@ export default {
         this.adminData = result.data;
       }
     },
-    async handleDelete(index, row) {
-      let result = await deleteAdmin(row);
+    handleDelete(index, row) {
+      this.delData = row;
+      this.dialogDel = true;
+    },
+    async adminDelete() {
+      let result = await deleteAdmin(this.delData);
       if (result.status) {
-        this.adminData = this.adminData.filter(item => item.id != row.id);
+        this.adminData = this.adminData.filter(item => item.id != this.delData.id);
         this.$message({
           message: result.message,
           type: 'success'
@@ -181,12 +200,15 @@ export default {
       } else {
         this.$message.error(result.message);
       }
+      this.dialogDel = false;
     },
     async handleEdit(index, row) {
       this.editData.id = row.id;
       this.editData.index = index;
       this.editData.name = row.name;
       this.editData.account = row.account;
+      this.editData.password = '';
+      this.editData.change = '';
       this.dialogEdit = true;
     },
     handleAdd() {
@@ -222,6 +244,9 @@ export default {
       let result = await addAdmin(this.addData);
       if (result.status) {
         this.adminData.push(result.data);
+        this.addData.name = '';
+        this.addData.account = '';
+        this.addData.password = '';
         this.dialogAdd = false;
         this.$message({
           message: result.message,
