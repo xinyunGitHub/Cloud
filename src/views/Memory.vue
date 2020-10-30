@@ -47,7 +47,6 @@
               <el-button
                 size="mini"
                 type="danger"
-                :disabled="scope.row.id == 1"
                 @click="handleDelete(scope.$index, scope.row)">删除</el-button>
               <el-button
                 size="mini"
