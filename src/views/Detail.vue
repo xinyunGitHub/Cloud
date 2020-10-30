@@ -53,7 +53,6 @@
               <el-button
                 size="mini"
                 type="danger"
-                :disabled="scope.row.id == 1"
                 @click="handleDelete(scope.$index, scope.row)">删除</el-button>
               <el-button
                 size="mini"
@@ -248,7 +247,7 @@ export default {
           { required: true, message: '请输入商品价格', trigger: 'blur' },
           { min: 1, max: 12, message: '长度在 1 到 12 个字符', trigger: 'blur' }
         ]
-      },
+      }
     }
   },
   created() {

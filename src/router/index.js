@@ -51,6 +51,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "Detail" */ '../views/Detail.vue')
   },
   {
+    path: '/memory',
+    name: 'Memory',
+    aside: true,
+    title: '商品SKU管理',
+    component: () => import(/* webpackChunkName: "Memory" */ '../views/Memory.vue')
+  },
+  {
     path: '/order',
     name: 'Order',
     aside: true,

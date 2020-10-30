@@ -12,7 +12,7 @@ export function axiosFetch(parm) {
   parm.load ? loadedBox(true, parm.load) : null;
   return new Promise((ret, rej) => {
     const instance = axios.create({
-      baseURL: process.env.VUE_APP_DOMAIN,
+      baseURL: process.env.NODE_ENV === "production" ? "https://mdqygl.cn" : "http://127.0.0.1:8000/",
       timeout: 0, // 0 表示无超时时间
       headers: {
         // "Access-Control-Allow-Origin": "*",
@@ -151,5 +151,5 @@ export function getItem(key) {
 }
 
 export function delItem(key) {
-  localStorage.removeItem(key)
+  localStorage.removeItem(key);
 }
