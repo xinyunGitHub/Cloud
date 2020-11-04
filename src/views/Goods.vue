@@ -28,6 +28,12 @@
             </template>
           </el-table-column>
           <el-table-column
+            label="商品所属栏目">
+            <template slot-scope="scope">
+              <span>{{ typeFilter(scope.row.type) }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
             prop="title"
             label="商品名称">
           </el-table-column>
@@ -87,6 +93,12 @@
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
+              <el-form-item label="所属栏目:" prop="type">
+                <el-radio-group v-model="addData.type" size="small">
+                  <el-radio label="0" border>标签 1</el-radio>
+                  <el-radio label="1" border>标签 2</el-radio>
+                </el-radio-group>
+              </el-form-item>
               <el-form-item label="商品名称:" prop="title">
                 <el-input v-model="addData.title" type="text" placeholder="请输入商品名称"></el-input>
               </el-form-item>
@@ -126,6 +138,12 @@
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
+              <el-form-item label="所属栏目:" prop="type">
+                <el-radio-group v-model="editData.type" size="small">
+                  <el-radio label="0" border>标签 1</el-radio>
+                  <el-radio label="1" border>标签 2</el-radio>
+                </el-radio-group>
+              </el-form-item>
               <el-form-item label="商品名称:" prop="title">
                 <el-input v-model="editData.title" type="text" placeholder="请输入商品名称"></el-input>
               </el-form-item>
@@ -163,7 +181,8 @@ export default {
         thumb: '',
         title: '',
         price: '',
-        tally: ''
+        tally: '',
+        type: '0',
       },
       addRules: {
         title: [
@@ -186,7 +205,8 @@ export default {
         thumb: '',
         title: '',
         price: '',
-        tally: ''
+        tally: '',
+        type: '0'
       },
       editRules: {
         title: [
@@ -232,6 +252,7 @@ export default {
       this.dialogDel = false;
     },
     handleEdit(index, row) {
+      console.log(row, "row")
       this.editData.id = row.id;
       this.editData.index = index;
       this.editData.unique = row.unique;
@@ -239,6 +260,7 @@ export default {
       this.editData.title = row.title;
       this.editData.price = row.price.toString();
       this.editData.tally = row.tally;
+      this.editData.type = row.type.toString();
       this.dialogEdit = true;
     },
     handleAdd() {
@@ -295,6 +317,7 @@ export default {
         this.addData.title = '';
         this.addData.price = '';
         this.addData.tally = '';
+        this.addData.type = '';
         this.dialogAdd = false;
         this.$message({
           message: result.message,
@@ -323,6 +346,15 @@ export default {
         this.$message.error('上传头像图片大小不能超过 2MB!');
       }
       return type && size;
+    },
+    typeFilter(type) {
+      switch(type)
+      {
+        case 0:
+          return '标签 1';
+        case 1:
+          return '标签 2';
+      }
     }
   }
 }

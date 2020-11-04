@@ -146,7 +146,7 @@
         <el-row :gutter="24">
           <el-col :span="19" :offset="2">
             <el-form label-position="left" label-width="auto" ref="editData" :model="editData" :rules="editRules">
-              <el-form-item label="商品名称:">
+              <el-form-item label="商品:">
                 <el-card>
                   <img :src="baseUrl + 'storage/' + editData.thumbGoods" style="display: inline-block; width: 68px; height: 68px">
                   <span style="padding: 12px;line-height: 24px;">{{ editData.titleGoods }}</span>
