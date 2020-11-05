@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="padding: 12px 0 12px 0;">
       <el-col :span="2">
         <el-button type="primary" @click="handleAdd">新增</el-button>
       </el-col>
@@ -18,11 +18,10 @@
           <el-table-column
             prop="unique"
             label="商品ID"
-            width="188px">
+            width="128px">
           </el-table-column>
           <el-table-column
-            label="商品详情大图"
-            width="320px">
+            label="商品详情大图">
             <template slot-scope="scope">
               <template v-for="(item, index) in scope.row.figure">
                 <img :key="index" :src="baseUrl + 'storage/' + item" class="figure">
@@ -31,24 +30,22 @@
           </el-table-column>
           <el-table-column
             prop="title"
-            label="商品名称"
-            width="148px">
+            label="商品名称">
           </el-table-column>
           <el-table-column
             prop="price"
-            label="商品价格"
+            label="价格(元)"
             width="88px">
           </el-table-column>
           <el-table-column
-            label="商品详情描述"
-            width="320px">
+            label="商品详情描述">
             <template slot-scope="scope">
               <template v-for="(item, index) in scope.row.describe">
                 <img :key="index" :src="baseUrl + 'storage/' + item" class="describe">
               </template>
             </template>
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column label="操作" width="168px">
             <template slot-scope="scope">
               <el-button
                 size="mini"
@@ -83,7 +80,7 @@
       <span>
         <el-row :gutter="24">
           <el-col :span="19" :offset="2">
-            <el-form label-position="left" label-width="auto" ref="addData" :model="addData" :rules="addRules">
+            <el-form label-position="left" label-width="86px" ref="addData" :model="addData" :rules="addRules">
               <el-form-item label="商品选择:">
                 <el-select v-model="addData.unique" placeholder="请选择">
                   <el-option
@@ -98,7 +95,7 @@
                   </el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="商品详情大图:">
+              <el-form-item label="详情大图:">
                 <el-upload
                   class="upload-demo"
                   :action="baseUrl + 'apg/detail/upload'"
@@ -113,10 +110,10 @@
               <el-form-item label="商品名称:" prop="title">
                 <el-input v-model="addData.title" type="text" placeholder="请输入商品名称"></el-input>
               </el-form-item>
-              <el-form-item label="商品价格:" prop="price">
+              <el-form-item label="价格(元):" prop="price">
                 <el-input v-model="addData.price" type="text" placeholder="请输入商品价格"></el-input>
               </el-form-item>
-              <el-form-item label="商品详情描述:">
+              <el-form-item label="详情描述:">
                 <el-upload
                   class="upload-demo"
                   :action="baseUrl + 'apg/detail/upload'"
@@ -145,14 +142,14 @@
       <span>
         <el-row :gutter="24">
           <el-col :span="19" :offset="2">
-            <el-form label-position="left" label-width="auto" ref="editData" :model="editData" :rules="editRules">
+            <el-form label-position="left" label-width="86px" ref="editData" :model="editData" :rules="editRules">
               <el-form-item label="商品:">
                 <el-card>
                   <img :src="baseUrl + 'storage/' + editData.thumbGoods" style="display: inline-block; width: 68px; height: 68px">
                   <span style="padding: 12px;line-height: 24px;">{{ editData.titleGoods }}</span>
                 </el-card>
               </el-form-item>
-              <el-form-item label="商品详情大图:">
+              <el-form-item label="详情大图:">
                 <el-upload
                   class="upload-demo"
                   :action="baseUrl + 'apg/detail/upload'"
@@ -167,10 +164,10 @@
               <el-form-item label="商品名称:" prop="title">
                 <el-input v-model="editData.title" type="text" placeholder="请输入商品名称"></el-input>
               </el-form-item>
-              <el-form-item label="商品价格:" prop="price">
+              <el-form-item label="价格(元):" prop="price">
                 <el-input v-model="editData.price" type="text" placeholder="请输入商品价格"></el-input>
               </el-form-item>
-              <el-form-item label="商品详情描述:">
+              <el-form-item label="详情描述:">
                 <el-upload
                   class="upload-demo"
                   :action="baseUrl + 'apg/detail/upload'"

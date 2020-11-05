@@ -37,6 +37,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "User" */ '../views/User.vue')
   },
   {
+    path: '/advert',
+    name: 'Advert',
+    aside: true,
+    title: '首页广告管理',
+    component: () => import(/* webpackChunkName: "Advert" */ '../views/Advert.vue')
+  },
+  {
     path: '/goods',
     name: 'Goods',
     aside: true,

@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="padding: 12px 0 12px 0;">
       <el-col :span="2">
         <el-button type="primary" @click="handleAdd">新增</el-button>
       </el-col>
@@ -18,11 +18,10 @@
           <el-table-column
             prop="unique"
             label="商品ID"
-            width="188px">
+            width="128px">
           </el-table-column>
           <el-table-column
-            label="商品大图"
-            width="128px">
+            label="商品大图">
             <template slot-scope="scope">
               <img style="width: 32px; height: 32px;" :src="baseUrl + 'storage/' + scope.row.thumb">
             </template>
@@ -39,13 +38,15 @@
           </el-table-column>
           <el-table-column
             prop="price"
-            label="商品价格">
+            label="价格(元)"
+            width="88px">
           </el-table-column>
           <el-table-column
             prop="tally"
-            label="商品标签">
+            label="商品标签"
+            width="88px">
           </el-table-column>
-          <el-table-column label="操作" width="240px">
+          <el-table-column label="操作" width="168px">
             <template slot-scope="scope">
               <el-button
                 size="mini"
@@ -102,7 +103,7 @@
               <el-form-item label="商品名称:" prop="title">
                 <el-input v-model="addData.title" type="text" placeholder="请输入商品名称"></el-input>
               </el-form-item>
-              <el-form-item label="商品价格:" prop="price">
+              <el-form-item label="价格(元):" prop="price">
                 <el-input v-model="addData.price" type="text" placeholder="请输入商品价格"></el-input>
               </el-form-item>
               <el-form-item label="商品标签:" prop="tally">
@@ -147,7 +148,7 @@
               <el-form-item label="商品名称:" prop="title">
                 <el-input v-model="editData.title" type="text" placeholder="请输入商品名称"></el-input>
               </el-form-item>
-              <el-form-item label="商品价格:" prop="price">
+              <el-form-item label="价格(元):" prop="price">
                 <el-input v-model="editData.price" type="text" placeholder="请输入商品价格"></el-input>
               </el-form-item>
               <el-form-item label="商品标签:" prop="tally">

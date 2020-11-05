@@ -1,6 +1,6 @@
 <template>
   <div class="memory">
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="padding: 22px 0 0 0;">
       <el-col :span="24">
         <el-table
           :data="memoryData"
@@ -13,12 +13,11 @@
           <el-table-column
             prop="unique"
             label="商品ID"
-            width="188px">
+            width="128px">
           </el-table-column>
           <el-table-column
             prop="title"
-            label="商品名称"
-            width="148px">
+            label="商品名称">
           </el-table-column>
           <el-table-column
             prop="price"
@@ -30,19 +29,19 @@
             <template slot-scope="scope">
               <template v-for="(item, index) in scope.row.memory">
                 <el-row :gutter="20" :key="index">
-                  <el-col :span="4">
+                  <el-col :span="4" style="margin: 6px 0;">
                     <span>{{ item.type }}: </span>
                   </el-col>
                   <el-col :span="20">
                     <span v-for="(list, idx) in item.value" :key="idx">
-                      <el-tag>{{ list }}</el-tag>
+                      <el-tag style="margin: 0 3px;">{{ list }}</el-tag>
                     </span>
                   </el-col>
                 </el-row>
               </template>
             </template>
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column label="操作" width="168px">
             <template slot-scope="scope">
               <el-button
                 size="mini"

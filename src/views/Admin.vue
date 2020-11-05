@@ -1,6 +1,6 @@
 <template>
   <div class="admin">
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="padding: 12px 0 12px 0;">
       <el-col :span="2">
         <el-button type="primary" @click="handleAdd">新增</el-button>
       </el-col>
@@ -29,7 +29,7 @@
               <span style="margin-left: 10px">******</span>
             </template>
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column label="操作" width="168px">
             <template slot-scope="scope">
               <el-button
                 size="mini"
